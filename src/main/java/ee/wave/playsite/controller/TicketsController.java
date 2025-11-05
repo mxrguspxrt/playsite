@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import ee.wave.playsite.model.Ticket;
-import ee.wave.playsite.repository.TicketRepository;
+import ee.wave.playsite.service.TicketsService;
 import ee.wave.playsite.request.CreateTicketRequest;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,20 +19,20 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/playsites/{playsiteId}/tickets")
 public class TicketsController {
 
-    private final TicketRepository ticketRepository;
+    private final TicketsService ticketsService;
 
-    public TicketsController(TicketRepository ticketRepository) {
-        this.ticketRepository = ticketRepository;
+    public TicketsController(TicketsService ticketsService) {
+        this.ticketsService = ticketsService;
     }
 
     @GetMapping
     public Flux<Ticket> getAllTicketsForPlaysite(@PathVariable Integer playsiteId) {
-        return this.ticketRepository.findAllForPlaysite(playsiteId);
+        return this.ticketsService.getAllForPlaysite(playsiteId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Ticket> createOne(@PathVariable Integer playsiteId, @RequestBody CreateTicketRequest request) {
-        return this.ticketRepository.createOne(playsiteId, request);
+        return this.ticketsService.createOne(playsiteId, request);
     }
 }

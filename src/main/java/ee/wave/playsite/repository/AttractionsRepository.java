@@ -40,7 +40,7 @@ public class AttractionsRepository {
                 .filter(attraction -> attraction.playsiteId().equals(playsiteId));
     }
 
-    public Mono<Integer> getMaxAllowed(Integer playsiteId) {
+    public Mono<Integer> getMaxAllowedCount(Integer playsiteId) {
         return this.findAllForPlaysite(playsiteId)
             .map(Attraction::attractionTypeId)
             .flatMap(this.attractionTypesRepository::findById)

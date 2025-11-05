@@ -1,4 +1,9 @@
+# Explanation
 
+AttractionType-s are hardcoded.
+
+1. Create Playsite
+2. Create Attraction (that references to Playsite, )
 
 
 # Did read somewhat

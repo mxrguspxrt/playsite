@@ -2,7 +2,7 @@ package ee.wave.playsite.repository;
 
 import org.springframework.stereotype.Repository;
 import ee.wave.playsite.model.Playsite;
-import ee.wave.playsite.request.CreatePlaySiteRequest;
+import ee.wave.playsite.request.CreatePlaysiteRequest;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
@@ -19,7 +19,7 @@ public class PlaysitesRepository {
         return Mono.justOrEmpty(playsites.get(playsiteId));
     }
 
-    public Mono<Playsite> createOne(CreatePlaySiteRequest request) {
+    public Mono<Playsite> createOne(CreatePlaysiteRequest request) {
         Playsite newPlaysite = new Playsite(idGenerator.incrementAndGet(), request.name());
         playsites.put(newPlaysite.id(), newPlaysite);
         
